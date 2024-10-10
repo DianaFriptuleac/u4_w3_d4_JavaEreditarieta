@@ -34,7 +34,7 @@ public abstract class Evento {
 
 
     public Evento() {
-        //il costruttore vuoto per JPA
+
     }
 
 

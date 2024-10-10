@@ -1,9 +1,14 @@
 package Diana_Friptuleac.dao;
 
+import Diana_Friptuleac.classi.Concerto;
 import Diana_Friptuleac.classi.Evento;
+import Diana_Friptuleac.classi.GenereConcerto;
 import Diana_Friptuleac.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
+
+import java.util.List;
 
 public class EventoDAO {
     private final EntityManager entityManager;
@@ -42,4 +47,19 @@ public class EventoDAO {
         transaction.commit();
         System.out.println("L'evento " + foundEvent.getTitolo() + " è stato rimosso con successo!");
     }
+
+    //Metodo getConcertiInStreaming
+    public List<Concerto> getConcertiInStreaming(boolean StConcerto) {
+        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.StConcerto = :StConcerto");
+        query.setParameter("inStreaming", StConcerto);
+        return query.getResultList();
+    }
+
+    //Metodo getConcertiPerGenere
+    public List<Concerto> getConcertiPerGenere(GenereConcerto gen) {
+        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.gen = :gen");
+        query.setParameter("gen", gen);
+        return query.getResultList();
+    }
+
 }

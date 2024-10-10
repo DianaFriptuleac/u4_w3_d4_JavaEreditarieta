@@ -1,11 +1,10 @@
 package Diana_Friptuleac;
 
-import Diana_Friptuleac.classi.EventoType;
-import Diana_Friptuleac.classi.Location;
-import Diana_Friptuleac.classi.PartitaCalcio;
+import Diana_Friptuleac.classi.*;
 import Diana_Friptuleac.dao.EventoDAO;
 import Diana_Friptuleac.dao.LocationDAO;
 import Diana_Friptuleac.dao.PartitaCalcioDAO;
+import Diana_Friptuleac.dao.PersonaDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -22,6 +21,7 @@ public class Application {
         EventoDAO eventDB = new EventoDAO(em);
         LocationDAO locationDAO = new LocationDAO(em);
         PartitaCalcioDAO partitaCalcioDAO = new PartitaCalcioDAO(em);
+        PersonaDAO personaDB = new PersonaDAO(em);
 
 
         // Salvo le location
@@ -59,9 +59,18 @@ public class Application {
                 "Serie A", EventoType.PUBBLICO, 40000, loc3, "Torino", "Napoli", null, 0, 0);
 
 
-        partitaCalcioDAO.save(pCalcio1);
+       /* partitaCalcioDAO.save(pCalcio1);
         partitaCalcioDAO.save(pCalcio2);
         partitaCalcioDAO.save(pCalcio3);
+*/
+        Persona pers1 = new Persona("Mario", "Rossi", "mario.rossi@gmail.com", LocalDate.of(1990, 5, 10), SessoPersona.M);
+        Persona pers2 = new Persona("Anna", "Verdi", "anna.verdi@gmail.com", LocalDate.of(1985, 7, 23), SessoPersona.F);
+        Persona pers3 = new Persona("Luca", "Bianchi", "luca.bianchi@gmail.com", LocalDate.of(1995, 12, 5), SessoPersona.M);
+
+       /* personaDB.save(pers1);
+        personaDB.save(pers2);
+        personaDB.save(pers3);*/
+
 
         em.close();
         emf.close();

@@ -27,7 +27,7 @@ public class PartitaCalcio extends Evento {
     @Column(name = "gol_squadra_ospite")
     private int golSquadraOspite;
 
-    // Costruttore vuoto richiesto da JPA
+
     public PartitaCalcio() {
     }
 
