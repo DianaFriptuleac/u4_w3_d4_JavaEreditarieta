@@ -3,6 +3,7 @@ package Diana_Friptuleac.dao;
 import Diana_Friptuleac.classi.Concerto;
 import Diana_Friptuleac.classi.Evento;
 import Diana_Friptuleac.classi.GenereConcerto;
+import Diana_Friptuleac.classi.PartitaCalcio;
 import Diana_Friptuleac.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -49,16 +50,28 @@ public class EventoDAO {
     }
 
     //Metodo getConcertiInStreaming
-    public List<Concerto> getConcertiInStreaming(boolean StConcerto) {
-        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.StConcerto = :StConcerto");
-        query.setParameter("inStreaming", StConcerto);
+    public List<Concerto> getConcertiInStreaming(boolean inStreaming) {
+        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.inStreaming = :inStreaming");
+        query.setParameter("inStreaming", inStreaming);
         return query.getResultList();
     }
 
     //Metodo getConcertiPerGenere
-    public List<Concerto> getConcertiPerGenere(GenereConcerto gen) {
-        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.gen = :gen");
-        query.setParameter("gen", gen);
+    public List<Concerto> getConcertiPerGenere(GenereConcerto genere) {
+        Query query = entityManager.createQuery("SELECT c FROM Concerto c WHERE c.genere = :genere");
+        query.setParameter("genere", genere);
+        return query.getResultList();
+    }
+
+    // Metodo getPartiteVintelnCasa
+    public List<PartitaCalcio> getPartiteVintelnCasa() {
+        Query query = entityManager.createNamedQuery("PartitaCalcio.getPartiteVintelnCasa");
+        return query.getResultList();
+    }
+
+    // Metodo getPartiteVintelnTrasferta
+    public List<PartitaCalcio> getPartiteVintelnTrasferta() {
+        Query query = entityManager.createNamedQuery("PartitaCalcio.getPartiteVintelnTrasferta");
         return query.getResultList();
     }
 

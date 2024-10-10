@@ -1,14 +1,14 @@
 package Diana_Friptuleac.classi;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("Partite a Calcio")
+@NamedQueries({
+        @NamedQuery(name = "PartitaCalcio.getPartiteVintelnCasa", query = "SELECT p FROM PartitaCalcio p WHERE p.squadraVincente = p.squadraCasa"),
+        @NamedQuery(name = "PartitaCalcio.getPartiteVintelnTrasferta", query = "SELECT p FROM PartitaCalcio p WHERE p.squadraVincente = p.squadraOspite")})
 @Table(name = "partite")
 public class PartitaCalcio extends Evento {
 
