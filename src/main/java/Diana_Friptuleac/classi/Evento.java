@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-@Entity  //la classe dovra essere mappata ad una tabella. Hibernate- crea la tabella
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "all_events")
-public class Evento {
+public abstract class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
